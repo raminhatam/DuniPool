@@ -119,7 +119,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvChangeTodayAmount" />
 
         <TextView
-            android:id="@+id/tvVolumeQuantity"
+            android:id="@+id/tvAlgorithm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -129,34 +129,34 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvVolumeLabel"
+            android:id="@+id/tvAlgorithmLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volume"
+            android:text="Algorithm"
             android:layout_marginTop="4dp"
             style="@style/CoinBitText.BodyTertiary"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvVolumeQuantity" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAlgorithm" />
 
         <TextView
-            android:id="@+id/tvAvgVolumeAmount"
+            android:id="@+id/tvTotalVolumeAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="27M"
             style="@style/CoinBitText.Body1"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvVolumeLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAlgorithmLabel" />
 
         <TextView
-            android:id="@+id/tvAvgVolumeLabel"
+            android:id="@+id/tvTotalVolumeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volume Avrage"
+            android:text="Total Volume"
             android:layout_marginTop="4dp"
             style="@style/CoinBitText.BodyTertiary"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvAvgVolumeAmount" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalVolumeAmount" />
 
         <TextView
             android:id="@+id/tvAvgMarketCapAmount"
@@ -166,7 +166,7 @@
             style="@style/CoinBitText.Body1"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/tvAvgVolumeLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalVolumeLabel" />
 
         <TextView
             android:id="@+id/tvAvgMarketCapLabel"

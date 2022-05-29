@@ -27,7 +27,7 @@ class MarketAdapter(
 
 
             binding.txtCoinName.text = dataCoin.coinInfo.fullName
-            binding.txtPrice.text = "$" + dataCoin.rAW.uSD.pRICE.toString()
+            binding.txtPrice.text = dataCoin.dISPLAY.uSD.pRICE
             // binding.txtMarketCap.text = dataCoin.rAW.uSD.mKTCAP.toString()
             //   binding.txtTaghir.text = dataCoin.rAW.uSD.cHANGE24HOUR.toString()
 
