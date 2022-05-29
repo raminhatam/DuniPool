@@ -1,45 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:layout_marginTop="14dp"
     android:paddingTop="4dp"
     android:paddingBottom="4dp"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
 
     <ImageView
-        android:id="@+id/img_coin"
+        android:id="@+id/img_item"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"/>
 
     <TextView
         android:id="@+id/txtCoinName"
         style="@style/CoinBitText.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BTC"
         android:layout_marginStart="12dp"
-        app:layout_constraintStart_toEndOf="@+id/img_coin"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txtDollar"
-        style="@style/CoinBitText.Body1Alternate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="USDT"
-        app:layout_constraintStart_toEndOf="@+id/txtCoinName"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="BTC"
+        android:layout_toEndOf="@id/img_item"/>
 
     <TextView
         android:id="@+id/txtTaghir"
@@ -49,18 +37,16 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="4dp"
         android:text="CoinBase"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_coin"
-        app:layout_constraintTop_toBottomOf="@+id/txtCoinName" />
+        android:layout_toEndOf="@id/img_item"
+        android:layout_below="@id/txtCoinName"/>
 
     <TextView
         android:id="@+id/txtPrice"
         style="@style/CoinBitText.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$3,185"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="$3.185"
+        android:layout_alignParentEnd="true"/>
 
     <TextView
         android:id="@+id/txtMarketCap"
@@ -69,8 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="$2.4 million"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPrice" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txtPrice"/>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
