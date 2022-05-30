@@ -155,14 +155,17 @@
 
         <TextView
             android:id="@+id/txt_about_coin"
+            style="@style/CoinBitText.Body1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Some Come Data"
-            android:maxLines="7"
-            android:ellipsize="end"
-            style="@style/CoinBitText.Body1"
             android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:justificationMode="inter_word"
+            android:maxLines="6"
+            android:padding="16dp"
+            android:text="Some Come Data"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 

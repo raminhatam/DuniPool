@@ -10,9 +10,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import ir.hm.dunipool.CoinActivity
 import ir.hm.dunipool.R
 import ir.hm.dunipool.apiManager.ApiManager
+import ir.hm.dunipool.apiManager.model.CoinAboutData
+import ir.hm.dunipool.apiManager.model.CoinAboutItem
 import ir.hm.dunipool.apiManager.model.CoinsData
 import ir.hm.dunipool.databinding.ActivityMarketBinding
 
@@ -22,22 +25,20 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
     val apiManager = ApiManager()
     lateinit var adapter: MarketAdapter
     lateinit var dataNews: ArrayList<Pair<String, String>>
+    lateinit var aboutDataMap : MutableMap<String,CoinAboutItem>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMarketBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.layoutToolbar.toolbar.title = "Duni Pool Market"
-
-
-
+        
         binding.layoutWatchlist.btnShowMore.setOnClickListener {
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.livecoinwatch.com/"))
             startActivity(intent)
 
         }
-
         binding.swipeRefreshMain.setOnRefreshListener {
             initUi()
 
@@ -47,9 +48,10 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
 
         }
 
+        getAboutDataFromAsset()
+
 
     }
-
     override fun onResume() {
         super.onResume()
         initUi()
@@ -57,11 +59,11 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
 
     private fun initUi() {
 
+
         getNewsFromApi()
         getTopCoinsFromApi()
 
     }
-
 
     private fun getNewsFromApi() {
 
@@ -94,6 +96,7 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
             startActivity(intent)
 
         }
+
         binding.moduleNews.txtNews.setOnClickListener {
             refreshNews()
         }
@@ -126,7 +129,6 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
 
         })
     }
-
     private fun showDataInRecycler(data: List<CoinsData.Data>) {
 
         adapter = MarketAdapter(this, ArrayList(data))
@@ -137,12 +139,39 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
 
 
     }
-
     override fun onCoinClicked(dataCoin: CoinsData.Data) {
         val intent = Intent(this, CoinActivity::class.java)
-        intent.putExtra("dataToSend", dataCoin)
+
+        val bundle = Bundle()
+        bundle.putParcelable("bundle1", dataCoin)
+        bundle.putParcelable("bundle2", aboutDataMap[dataCoin.coinInfo.name]!!)
+        intent.putExtra("bundle",bundle)
         startActivity(intent)
-        Toast.makeText(this, dataCoin.coinInfo.fullName + " clicked", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, dataCoin.coinInfo.fullName + " clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun getAboutDataFromAsset() {
+
+        val fileInString = applicationContext.assets
+            .open("currencyinfo.json")
+            .bufferedReader()
+            .use { it.readText() }
+
+        aboutDataMap = mutableMapOf<String,CoinAboutItem>()
+        val gson = Gson()
+        val dataAboutAll = gson.fromJson( fileInString, CoinAboutData::class.java )
+        dataAboutAll.forEach {
+            aboutDataMap[it.currencyName] = CoinAboutItem(
+                it.info.web,
+                it.info.github,
+                it.info.twt,
+                it.info.desc,
+                it.info.reddit
+            )
+
+
+        }
+
     }
 
 
