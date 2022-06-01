@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import ir.hm.dunipool.CoinActivity
+import ir.hm.dunipool.features.coinActivity.CoinActivity
 import ir.hm.dunipool.R
 import ir.hm.dunipool.apiManager.ApiManager
 import ir.hm.dunipool.apiManager.model.CoinAboutData
@@ -144,7 +144,7 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
 
         val bundle = Bundle()
         bundle.putParcelable("bundle1", dataCoin)
-        bundle.putParcelable("bundle2", aboutDataMap[dataCoin.coinInfo.name]!!)
+        bundle.putParcelable("bundle2", aboutDataMap[dataCoin.coinInfo.name])
         intent.putExtra("bundle",bundle)
         startActivity(intent)
         //Toast.makeText(this, dataCoin.coinInfo.fullName + " clicked", Toast.LENGTH_SHORT).show()
@@ -168,11 +168,6 @@ class MarketActivity : AppCompatActivity(), MarketAdapter.RecyclerCallback {
                 it.info.desc,
                 it.info.reddit
             )
-
-
         }
-
     }
-
-
 }
